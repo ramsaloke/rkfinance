@@ -1,26 +1,70 @@
-import * as React from "react"
-import * as ProgressPrimitive from "@radix-ui/react-progress"
+import React from 'react';
 
-import { cn } from "@/lib/utils"
+interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+  value?: number;
+  max?: number;
+  variant?: 'default' | 'success' | 'warning' | 'error';
+  size?: 'sm' | 'md' | 'lg';
+}
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-))
-Progress.displayName = ProgressPrimitive.Root.displayName
+export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
+  ({ 
+    className = '', 
+    value = 0, 
+    max = 100, 
+    variant = 'default',
+    size = 'md',
+    ...props 
+  }, ref) => {
+    const percentage = Math.min(100, Math.max(0, (value / max) * 100));
+    
+    const variantStyles = {
+      default: 'bg-blue-600',
+      success: 'bg-green-600',
+      warning: 'bg-yellow-600',
+      error: 'bg-red-600'
+    };
 
-export { Progress }
+    const sizeStyles = {
+      sm: 'h-1',
+      md: 'h-2',
+      lg: 'h-3'
+    };
+
+    return (
+      <div
+        ref={ref}
+        role="progressbar"
+        aria-valuenow={value}
+        aria-valuemin={0}
+        aria-valuemax={max}
+        className={`
+          relative 
+          w-full 
+          overflow-hidden 
+          rounded-full 
+          bg-gray-200
+          ${sizeStyles[size]}
+          ${className}
+        `}
+        {...props}
+      >
+        <div
+          className={`
+            absolute
+            top-0
+            left-0
+            h-full
+            transition-all
+            duration-300
+            ease-out
+            ${variantStyles[variant]}
+          `}
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+    );
+  }
+);
+
+Progress.displayName = 'Progress';

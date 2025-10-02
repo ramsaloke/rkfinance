@@ -1,30 +1,68 @@
-"use client"
+import React from 'react';
+import { Check } from 'lucide-react';
 
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  label?: string;
+  error?: boolean;
+}
 
-import { cn } from "@/lib/utils"
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ className = '', label, error, ...props }, ref) => {
+    const id = React.useId();
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
-      className
-    )}
-    {...props}
-  >
-    <CheckboxPrimitive.Indicator
-      className={cn("flex items-center justify-center text-current")}
-    >
-      <Check className="h-4 w-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+    return (
+      <div className="flex items-center">
+        <div className="relative">
+          <input
+            ref={ref}
+            id={id}
+            type="checkbox"
+            className={`
+              peer
+              h-4 
+              w-4 
+              rounded 
+              border-2 
+              border-gray-300 
+              text-blue-600
+              focus:ring-blue-500
+              ${error ? 'border-red-500' : 'border-gray-300'}
+              ${className}
+            `}
+            {...props}
+          />
+          <Check
+            className={`
+              absolute
+              top-0
+              left-0
+              h-4
+              w-4
+              text-white
+              pointer-events-none
+              opacity-0
+              peer-checked:opacity-100
+              peer-checked:text-current
+              transition-opacity
+            `}
+          />
+        </div>
+        {label && (
+          <label
+            htmlFor={id}
+            className={`
+              ml-2
+              text-sm
+              font-medium
+              ${error ? 'text-red-500' : 'text-gray-700'}
+            `}
+          >
+            {label}
+          </label>
+        )}
+      </div>
+    );
+  }
+);
 
-export { Checkbox }
+Checkbox.displayName = 'Checkbox';
