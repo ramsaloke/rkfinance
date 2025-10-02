@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 
 export const Contact: React.FC = () => {
@@ -51,18 +50,16 @@ export const Contact: React.FC = () => {
               
               <div>
                 <label className="text-sm font-medium text-slate-700 mb-2 block">Consultation Type</label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select consultation type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="initial">Initial Consultation</SelectItem>
-                    <SelectItem value="portfolio-review">Portfolio Review</SelectItem>
-                    <SelectItem value="sip-planning">SIP Planning</SelectItem>
-                    <SelectItem value="goal-planning">Goal Planning</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
+                <select
+                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                >
+                  <option value="" disabled selected>Select consultation type</option>
+                  <option value="initial">Initial Consultation</option>
+                  <option value="portfolio-review">Portfolio Review</option>
+                  <option value="sip-planning">SIP Planning</option>
+                  <option value="goal-planning">Goal Planning</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
               
               <div>
