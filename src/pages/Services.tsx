@@ -1,8 +1,6 @@
-import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 import { Button } from '@/components/ui/button';
-import { Calculator, Shield, TrendingUp, Users, BookOpen, BarChart3, Target, Zap } from 'lucide-react';
+import { Calculator, Shield, TrendingUp, BarChart3, Target, Zap } from 'lucide-react';
 
 export const Services: React.FC = () => {
   return (

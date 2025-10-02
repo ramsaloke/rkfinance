@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { Calculator, TrendingUp, Target, DollarSign, Calendar, BarChart3 } from 'lucide-react';
+import { Calculator, TrendingUp, Target, BarChart3 } from 'lucide-react';
 
 export const SIPCalculator: React.FC = () => {
   const [monthlyAmount, setMonthlyAmount] = useState(10000);

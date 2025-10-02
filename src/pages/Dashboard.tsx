@@ -1,9 +1,7 @@
-import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { TrendingUp, TrendingDown, DollarSign, Target, Calendar, BarChart3, Users, Shield } from 'lucide-react';
+import { TrendingUp, DollarSign, Target, Calendar, BarChart3, Users, Shield } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   return (
