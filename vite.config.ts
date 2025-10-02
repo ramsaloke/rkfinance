@@ -15,10 +15,23 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
+    outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
-    },
-  },
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: [
+            '@radix-ui/react-slot',
+            '@radix-ui/react-label',
+            'class-variance-authority',
+            'lucide-react'
+          ]
+        }
+      }
+    }
+  }
 })
