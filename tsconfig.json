@@ -4,7 +4,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -13,12 +13,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
-    },
-    "outDir": "./dist"
+      "@/*": ["./*"]
+    }
   },
-  "include": ["src"],
-  "references": []
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
