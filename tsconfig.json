@@ -8,20 +8,17 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
     "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "outDir": "./dist"
   },
-  "include": ["src"],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src"]
 }
